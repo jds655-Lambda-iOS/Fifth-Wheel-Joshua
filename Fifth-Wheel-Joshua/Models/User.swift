@@ -8,9 +8,10 @@
 
 import Foundation
 
+
 class User: Codable, Equatable {
     
-    var id:         Int?
+    var id:         UUID = UUID()
     var username:   String
     var password:   String
     var landowner:  Bool?
@@ -20,7 +21,7 @@ class User: Codable, Equatable {
     var listings:   [Listing]?
     var bookings:   [Booking]?
     
-    init(username: String, password: String, landowner: Bool? = false, imageURL: String?, bio: String?) {
+    init(username: String, password: String, landowner: Bool? = false, imageURL: String? = nil, bio: String? = nil) {
         self.username   = username
         self.password   = password
         self.landowner  = landowner
@@ -31,7 +32,7 @@ class User: Codable, Equatable {
 
 extension User {
     static func == (lhs: User, rhs: User) -> Bool {
-        return lhs.id == rhs.id && lhs.username == rhs.username
+        return lhs.id == rhs.id
     }
 }
 

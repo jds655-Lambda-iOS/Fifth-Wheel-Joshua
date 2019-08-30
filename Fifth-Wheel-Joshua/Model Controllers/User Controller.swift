@@ -7,6 +7,7 @@
 //
 
 import Foundation
+var userController = UserController()
 
 class UserController {
     // MARK: - Variables/Contants
@@ -19,7 +20,7 @@ class UserController {
         loadFromPersistentStore()
     }
     
-    func login (which user: User) -> Bool {
+    func login (with user: User) -> Bool {
         var result: Bool = false
         for u in users {
             if u.username == user.username {
@@ -32,7 +33,7 @@ class UserController {
         return result
     }
     
-    func register (which user: User) -> Bool {
+    func register (with user: User) -> Bool {
         var result: Bool = false
         var alreadyReg: Bool = false
         for u in users {
@@ -40,7 +41,7 @@ class UserController {
         }
         if !alreadyReg {
             let newuser = self.add(user: user)
-            result = login(which: newuser)
+            result = login(with: newuser)
         } else {
             result = false
         }
@@ -49,7 +50,6 @@ class UserController {
     
     @discardableResult func add (user: User) -> User {
         let newuser = User(username: user.username, password: user.password, landowner: user.landowner, imageURL: user.imageURL, bio: user.bio)
-        newuser.id = users.count + 1
         users.append(newuser)
         saveToPersistentStore()
         return newuser

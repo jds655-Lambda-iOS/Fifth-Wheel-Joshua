@@ -8,18 +8,26 @@
 
 import Foundation
 
-class Listing: Codable {
+class Listing: Codable, Equatable {
     
-    var listingId:      Int?
-    var userId:         Int?
-    var listingName:    String
+    var id:             UUID = UUID()
+    var userId:         UUID
+    var name:           String
     var description:    String
     var imageUrl:       String?
     var address:        String?
     
-    init(userId: Int, listingName: String, description: String) {
+    init(userId: UUID, name: String, description: String, imageUrl: String? = nil, address: String? = nil) {
         self.userId         = userId
-        self.listingName    = listingName
+        self.name           = name
         self.description    = description
+        self.imageUrl       = imageUrl
+        self.address        = address
+    }
+}
+
+extension Listing {
+    static func == (lhs: Listing, rhs: Listing) -> Bool {
+        return lhs.id == rhs.id
     }
 }

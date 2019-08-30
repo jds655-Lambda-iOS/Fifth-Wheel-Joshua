@@ -10,13 +10,73 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginRegSegmented: UISegmentedControl!
+    @IBOutlet weak var goButton: UIButton!
+    @IBOutlet weak var landownerStackView: UIStackView!
+    @IBOutlet weak var landownerSwitch: UISwitch!
+    
+    var doLogin: Bool = true
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        goButton.setTitle("Login", for: .normal)
+        landownerStackView.isHidden = true
+        
 
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func LoginRegTapped(_ sender: Any) {
+        switch loginRegSegmented.selectedSegmentIndex {
+        case 0:
+            goButton.setTitle("Login", for: .normal)
+            landownerStackView.isHidden = true
+            doLogin = true
+        case 1:
+            goButton.setTitle("Register", for: .normal)
+            landownerStackView.isHidden = false
+            doLogin = false
+        default:
+            break
+        }
+    }
+    
+    @IBAction func goButtonTapped(_ sender: Any) {
+        guard let username = usernameTextField.text, let password = passwordTextField.text,
+            !username.isEmpty, !password.isEmpty
+            else {
+                alert(title: "Error", message: "Please enter both username and password")
+                return
+            }
+        let user = User(username: username, password: password, landowner: landownerSwitch.isOn)
+        if doLogin {
+            if userController.login(with: user) {
+                alert(title: "Login", message: "Login Succeeded!")
+                //TODO: Segue to
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                alert(title: "Login", message: "Login failed, please try again.")
+            }
+        } else {
+            if userController.register(with: user) {
+                alert(title: "Registration", message: "You will now be taken to the account info screen to fill out your information.")
+                performSegue(withIdentifier: "AccountSegue", sender: self)
+            } else {
+                alert(title: "Registration", message: "Registration failed, please try again.")
+            }
+        }
+    }
+    
+    private func alert (title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 
