@@ -14,10 +14,21 @@ class UserController {
     
     private(set) var users: [User] = []
     var loggedInUser: User?
+    private var userInfo: URL? {
+        let fileManager = FileManager.default
+        guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else    { return nil }
+        return documentsDirectory.appendingPathComponent("fillout.plist")
+    }
+    private var userDetail: URL? {
+        let fileManager = FileManager.default
+        guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else    { return nil }
+        return documentsDirectory.appendingPathComponent("fillin.plist")
+    }
     
     // MARK: - Methods
     init () {
         loadFromPersistentStore()
+        loadUsername()
     }
     
     func login (with user: User) -> Bool {
@@ -26,11 +37,38 @@ class UserController {
             if u.username == user.username {
                 if u.password == user.password {
                     self.loggedInUser = u
+                    saveUsername()
                     result = true
                 }
             }
         }
         return result
+    }
+    
+    private func saveUsername(){
+        guard let url = userDetail else {return print("Url not created in directory")}
+        do {
+            let logginUser = try PropertyListEncoder().encode(loggedInUser)
+            try logginUser.write(to: url)
+        } catch {
+            NSLog("Error saving username data: \(error) ")
+        }
+    }
+    
+    private func loadUsername() {
+        let fileManager = FileManager.default
+        guard let url = userDetail,
+            fileManager.fileExists(atPath: url.path) else { return }
+        
+        do {
+            let data = try Data(contentsOf: url)
+            let decoder = PropertyListDecoder()
+            let decodedUser = try decoder.decode(User.self, from: data)
+            guard let index = users.firstIndex(of: decodedUser) else { return }
+            loggedInUser = users[index]
+        } catch {
+            NSLog("Error loading username data: \(error)")
+        }
     }
     
     func register (with user: User) -> Bool {
@@ -68,7 +106,7 @@ class UserController {
         if let imageURL = user.imageURL { users[index].imageURL = imageURL }
         if !user.password.isEmpty { users[index].password = user.password }
         if !user.username.isEmpty { users[index].username = user.username }
-        
+        users[index].landowner = user.landowner ?? false
         saveToPersistentStore()
         return true
     }

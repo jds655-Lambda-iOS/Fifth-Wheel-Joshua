@@ -8,21 +8,29 @@
 
 import Foundation
 
-class Booking: Codable {
+class Booking: Codable, Equatable {
+    
+    
 
-    var bookingId: Int?
-    let listingId: Int
-    let userId: Int
-    let listedBy: String
-    var startDate: Date
-    var stopDate: Date
+    var id: UUID = UUID()
+    let listingId: UUID
+    let userId: UUID
+    let listedBy: UUID
+    var startDate: String
+    var stopDate: String
 
-    init(listingId: Int, userId: Int, startDate: Date, endDate: Date, listedBy: String) {
+    init(listingId: UUID, userId: UUID, startDate: String, stopDate: String, listedBy: UUID) {
         
         self.listingId = listingId
         self.userId = userId
         self.startDate = startDate
-        self.stopDate = endDate
+        self.stopDate = stopDate
         self.listedBy = listedBy
+    }
+}
+
+extension Booking {
+    static func == (lhs: Booking, rhs: Booking) -> Bool {
+        return lhs.id == rhs.id
     }
 }

@@ -48,33 +48,29 @@ class LoginViewController: UIViewController {
         guard let username = usernameTextField.text, let password = passwordTextField.text,
             !username.isEmpty, !password.isEmpty
             else {
-                alert(title: "Error", message: "Please enter both username and password")
+                alert(vc: self, title: "Error", message: "Please enter both username and password")
                 return
             }
         let user = User(username: username, password: password, landowner: landownerSwitch.isOn)
         if doLogin {
             if userController.login(with: user) {
-                alert(title: "Login", message: "Login Succeeded!")
-                //TODO: Segue to
-                self.dismiss(animated: true, completion: nil)
+                //alert(vc: self, title: "Login", message: "Login Succeeded!")
+                //TODO: Segue to last VC
+//                DispatchQueue.main.async {
+//                    self.dismiss(animated: true, completion: nil)
+//                }
+                performSegue(withIdentifier: "TabBarSegue", sender: self)
             } else {
-                alert(title: "Login", message: "Login failed, please try again.")
+                alert(vc: self, title: "Login", message: "Login failed, please try again.")
             }
         } else {
             if userController.register(with: user) {
-                alert(title: "Registration", message: "You will now be taken to the account info screen to fill out your information.")
+                alert(vc: self, title: "Registration", message: "You will now be taken to the account info screen to fill out your information.")
                 performSegue(withIdentifier: "AccountSegue", sender: self)
             } else {
-                alert(title: "Registration", message: "Registration failed, please try again.")
+                alert(vc: self, title: "Registration", message: "Registration failed, please try again.")
             }
         }
-    }
-    
-    private func alert (title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true)
     }
     
     /*

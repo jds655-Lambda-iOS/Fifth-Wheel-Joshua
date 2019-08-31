@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		E00205122319CFF800AE86F3 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00205112319CFF800AE86F3 /* UIImageViewExtension.swift */; };
+		E00205142319F35700AE86F3 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00205132319F35700AE86F3 /* Helpers.swift */; };
+		E0020516231A1ABD00AE86F3 /* ListingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0020515231A1ABD00AE86F3 /* ListingsCollectionViewCell.swift */; };
+		E0020518231A1C9200AE86F3 /* DiscoverCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0020517231A1C9200AE86F3 /* DiscoverCollectionViewController.swift */; };
+		E002051A231A201A00AE86F3 /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0020519231A201A00AE86F3 /* BookingViewController.swift */; };
 		E00DFB472319931000F5F16E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00DFB462319931000F5F16E /* LoginViewController.swift */; };
 		E00DFB4B2319C06500F5F16E /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00DFB4A2319C06500F5F16E /* AccountViewController.swift */; };
 		E00DFB4D2319C09300F5F16E /* AccountListingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00DFB4C2319C09300F5F16E /* AccountListingTableViewCell.swift */; };
@@ -28,6 +32,10 @@
 
 /* Begin PBXFileReference section */
 		E00205112319CFF800AE86F3 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		E00205132319F35700AE86F3 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		E0020515231A1ABD00AE86F3 /* ListingsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsCollectionViewCell.swift; sourceTree = "<group>"; };
+		E0020517231A1C9200AE86F3 /* DiscoverCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCollectionViewController.swift; sourceTree = "<group>"; };
+		E0020519231A201A00AE86F3 /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewController.swift; sourceTree = "<group>"; };
 		E00DFB462319931000F5F16E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E00DFB4A2319C06500F5F16E /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		E00DFB4C2319C09300F5F16E /* AccountListingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListingTableViewCell.swift; sourceTree = "<group>"; };
@@ -95,6 +103,7 @@
 				E0CFD69D231853460098A47B /* Assets.xcassets */,
 				E0CFD6A2231853460098A47B /* Info.plist */,
 				E0CFD6B92318549D0098A47B /* Settings Keys.swift */,
+				E00205132319F35700AE86F3 /* Helpers.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -115,6 +124,8 @@
 				E00DFB462319931000F5F16E /* LoginViewController.swift */,
 				E00DFB4A2319C06500F5F16E /* AccountViewController.swift */,
 				E00DFB4E2319C66B00F5F16E /* ListingDetailViewController.swift */,
+				E0020517231A1C9200AE86F3 /* DiscoverCollectionViewController.swift */,
+				E0020519231A201A00AE86F3 /* BookingViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -144,6 +155,7 @@
 			children = (
 				E00DFB4C2319C09300F5F16E /* AccountListingTableViewCell.swift */,
 				E00205112319CFF800AE86F3 /* UIImageViewExtension.swift */,
+				E0020515231A1ABD00AE86F3 /* ListingsCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -229,9 +241,13 @@
 				E0CFD6B0231854450098A47B /* Listing.swift in Sources */,
 				E00205122319CFF800AE86F3 /* UIImageViewExtension.swift in Sources */,
 				E0CFD6B4231854660098A47B /* User Controller.swift in Sources */,
+				E002051A231A201A00AE86F3 /* BookingViewController.swift in Sources */,
 				E0CFD6AE231854380098A47B /* User.swift in Sources */,
 				E00DFB472319931000F5F16E /* LoginViewController.swift in Sources */,
 				E0CFD6B22318544F0098A47B /* Booking.swift in Sources */,
+				E00205142319F35700AE86F3 /* Helpers.swift in Sources */,
+				E0020518231A1C9200AE86F3 /* DiscoverCollectionViewController.swift in Sources */,
+				E0020516231A1ABD00AE86F3 /* ListingsCollectionViewCell.swift in Sources */,
 				E00DFB4B2319C06500F5F16E /* AccountViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

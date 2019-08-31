@@ -17,8 +17,19 @@ class ListingController {
         guard let userId = userController.loggedInUser?.id else {return []}
         return listings.filter({$0.userId == userId})
     }
+    var userListingIds: [UUID] {
+        var ids: [UUID] = []
+        for listing in userListings {
+            ids.append(listing.id)
+        }
+        return ids
+    }
     
-    @discardableResult func add (listing: Listing) -> Listing {
+    init () {
+        loadFromPersistentStore()
+    }
+    
+    @discardableResult func add (listing: Listing) -> Listing? {
         let newlisting = Listing(userId: listing.userId, name: listing.name,
             description: listing.description,
             imageUrl: listing.imageUrl ?? "",
@@ -43,6 +54,15 @@ class ListingController {
         if let address = listing.address { listings[index].address = address }
         saveToPersistentStore()
         return true
+    }
+    
+    func getHostName (from listing: Listing) -> String {
+        var userName = ""
+        let userId = listing.userId
+        let user: [User] = userController.users.filter({$0.id == userId})
+        if user.count > 0 { userName = user[0].username}
+        
+        return userName
     }
     
 

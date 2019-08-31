@@ -19,6 +19,7 @@ class User: Codable, Equatable {
     var bio:        String?
     var token:      Bearer?
     var listings:   [Listing]?
+    
     var bookings:   [Booking]?
     
     init(username: String, password: String, landowner: Bool? = false, imageURL: String? = nil, bio: String? = nil) {
