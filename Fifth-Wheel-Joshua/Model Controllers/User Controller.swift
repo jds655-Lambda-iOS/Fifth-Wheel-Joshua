@@ -31,6 +31,12 @@ class UserController {
         loadUsername()
     }
     
+    func getName (from userId: UUID) -> String {
+        let userList = users.filter({$0.id == userId})
+        let name = userList[0].username
+        return name
+    }
+    
     func login (with user: User) -> Bool {
         var result: Bool = false
         for u in users {

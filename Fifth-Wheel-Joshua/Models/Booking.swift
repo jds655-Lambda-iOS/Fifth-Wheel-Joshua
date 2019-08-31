@@ -18,6 +18,10 @@ class Booking: Codable, Equatable {
     let listedBy: UUID
     var startDate: String
     var stopDate: String
+    var listing: Listing {
+        let listings = listingController.listings.filter({$0.id == self.listingId})
+        return listings[0]
+    }
 
     init(listingId: UUID, userId: UUID, startDate: String, stopDate: String, listedBy: UUID) {
         

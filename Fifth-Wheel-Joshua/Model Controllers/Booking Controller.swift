@@ -26,6 +26,7 @@ class BookingController {
         return bookings.filter({$0.userId == userId})
     }
     
+    
     init () {
         loadFromPersistentStore()
     }
