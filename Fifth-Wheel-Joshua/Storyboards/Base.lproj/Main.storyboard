@@ -540,7 +540,13 @@
                             <outlet property="delegate" destination="B7q-1N-BKX" id="1iY-xO-ytD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="udl-li-HJG"/>
+                    <navigationItem key="navigationItem" id="udl-li-HJG">
+                        <barButtonItem key="rightBarButtonItem" title="Refresh" id="Qgj-6K-xmF">
+                            <connections>
+                                <action selector="refreshTapped:" destination="B7q-1N-BKX" id="gXX-qX-Y6s"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="LoginSegue" id="Vog-ah-OAq"/>
                     </connections>

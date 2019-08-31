@@ -65,8 +65,8 @@ class LoginViewController: UIViewController {
             }
         } else {
             if userController.register(with: user) {
-                alert(vc: self, title: "Registration", message: "You will now be taken to the account info screen to fill out your information.")
-                performSegue(withIdentifier: "AccountSegue", sender: self)
+                alert(vc: self, title: "Registration", message: "Registration succeeded, please login now.")
+                performSegue(withIdentifier: "TabBarSegue", sender: self)
             } else {
                 alert(vc: self, title: "Registration", message: "Registration failed, please try again.")
             }

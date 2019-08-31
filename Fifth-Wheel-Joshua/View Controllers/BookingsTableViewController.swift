@@ -31,6 +31,10 @@ class BookingsTableViewController: UITableViewController {
         }
     }
 
+    @IBAction func refreshTapped(_ sender: Any) {
+        tableView.reloadData()
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
